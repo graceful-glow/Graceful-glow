@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Graceful Glow Health & Wellness</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500;600&display=swap');
+
+```
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background-color: #0f0e0c !important;
+  color: #fdfaf3 !important;
+  font-family: Georgia, 'Times New Roman', serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Font families with fallbacks */
+.font-cursive { font-family: 'Great Vibes', 'Brush Script MT', cursive; }
+.font-serif   { font-family: 'Cormorant Garamond', 'Palatino Linotype', Georgia, serif; }
+.font-cinzel  { font-family: 'Cinzel', 'Trajan Pro', Georgia, serif; }
+.font-sans    { font-family: 'Raleway', 'Century Gothic', Verdana, sans-serif; }
+
+:root {
+  --black:        #0a0a0a;
+  --black-rich:   #0f0e0c;
+  --black-mid:    #151310;
+  --black-soft:   #1c1a16;
+  --gold:         #c9a84c;
+  --gold-light:   #e8c96e;
+  --gold-bright:  #f5d980;
+  --gold-dim:     #8a6e2f;
+  --white:        #fdfaf3;
+  --off-white:    rgba(253,250,243,0.78);
+  --text-muted:   rgba(253,250,243,0.52);
+}
+
+html { scroll-behavior: smooth; }
+
+#particles {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.45;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 4rem;
+  background-color: rgba(10,10,10,0.95) !important;
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(201,168,76,0.3);
+}
+.nav-brand { display: flex; align-items: center; gap: 0.8rem; }
+.nav-lotus {
+  width: 32px; height: 32px; flex-shrink: 0;
+  background: linear-gradient(135deg, #f5d980, #8a6e2f);
+  clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+}
+.nav-logo {
+  font-family: 'Great Vibes', 'Brush Script MT', cursive;
+  font-size: 1.8rem; line-height: 1;
+  background: linear-gradient(135deg, #e8c96e, #f5d980, #c9a84c);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  text-decoration: none; color: rgba(253,250,243,0.78); transition: color 0.3s;
+}
+.nav-links a:hover { color: #e8c96e; }
+.nav-cta {
+  background: transparent; border: 1px solid #c9a84c;
+  color: #e8c96e; padding: 0.55rem 1.4rem;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.65rem; letter-spacing: 0.14em;
+  cursor: pointer; border-radius: 1px; transition: background 0.3s, color 0.3s;
+}
+.nav-cta:hover { background-color: #c9a84c; color: #0a0a0a; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  text-align: center; position: relative; overflow: hidden; padding: 8rem 2rem 6rem;
+  background-color: #0f0e0c !important;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.15) 0%, transparent 70%),
+              radial-gradient(ellipse 50% 40% at 15% 85%, rgba(201,168,76,0.08) 0%, transparent 60%);
+}
+.hero-ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.13);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  animation: spin-slow 44s linear infinite;
+}
+.hero-ring-a { width: 600px; height: 600px; }
+.hero-ring-b { width: 420px; height: 420px; border-color: rgba(201,168,76,0.07); animation-duration:32s; animation-direction:reverse; }
+@keyframes spin-slow { to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+.hero-content { position: relative; z-index: 2; max-width: 860px; }
+
+.hero-eyebrow {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.65rem; letter-spacing: 0.33em;
+  color: #c9a84c;
+  display: flex; align-items: center; justify-content: center; gap: 1.2rem;
+  margin-bottom: 1.8rem;
+  opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+}
+.eline { display: block; width: 36px; height: 1px; }
+.eline-l { background: linear-gradient(90deg, transparent, #c9a84c); }
+.eline-r { background: linear-gradient(90deg, #c9a84c, transparent); }
+
+.hero-cursive {
+  font-family: 'Great Vibes', 'Brush Script MT', cursive;
+  font-size: clamp(4.5rem, 11vw, 9rem);
+  line-height: 1.2; padding: 0.1em 0.1em;
+  background: linear-gradient(135deg, #e8c96e 0%, #f5d980 40%, #c9a84c 70%, #e8c96e 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block; overflow: visible;
+  filter: drop-shadow(0 0 28px rgba(201,168,76,0.3));
+  opacity: 0; animation: fadeUp 1s 0.35s forwards;
+}
+
+.hero-divider {
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+  margin: 1.4rem 0 1.2rem;
+  opacity: 0; animation: fadeUp 0.8s 0.55s forwards;
+}
+.hdl { flex: 1; max-width: 90px; height: 1px; }
+.hdl-l { background: linear-gradient(90deg, transparent, #c9a84c); }
+.hdl-r { background: linear-gradient(90deg, #c9a84c, transparent); }
+.hdt { font-family: 'Cinzel', Georgia, serif; font-size: 0.58rem; letter-spacing: 0.28em; color: #c9a84c; }
+
+.hero-sub {
+  font-family: 'Raleway', 'Century Gothic', Verdana, sans-serif;
+  font-size: 0.95rem; line-height: 1.9; color: rgba(253,250,243,0.78);
+  max-width: 500px; margin: 0 auto 2.6rem;
+  opacity: 0; animation: fadeUp 0.8s 0.7s forwards;
+}
+
+.hero-icons {
+  display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+  margin-bottom: 3rem;
+  opacity: 0; animation: fadeUp 0.8s 0.84s forwards;
+}
+.hic { text-align: center; }
+.hic-circle {
+  width: 56px; height: 56px; border: 1px solid rgba(201,168,76,0.38);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; margin: 0 auto 0.5rem;
+  background-color: rgba(201,168,76,0.06);
+  transition: border-color 0.3s, background 0.3s;
+}
+.hic:hover .hic-circle { border-color: #c9a84c; background-color: rgba(201,168,76,0.14); }
+.hic-label {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.56rem; letter-spacing: 0.15em; color: #c9a84c;
+}
+
+.hero-btns {
+  display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.8s 0.98s forwards;
+}
+.btn-gold {
+  background: linear-gradient(135deg, #e8c96e, #c9a84c, #8a6e2f);
+  color: #0a0a0a; border: none; padding: 1rem 2.8rem;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.7rem; letter-spacing: 0.18em;
+  cursor: pointer; border-radius: 1px; position: relative; overflow: hidden;
+  box-shadow: 0 4px 24px rgba(201,168,76,0.3);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(201,168,76,0.45); }
+.btn-ghost {
+  background: transparent; border: 1px solid rgba(201,168,76,0.45);
+  color: #e8c96e; padding: 1rem 2.8rem;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.7rem; letter-spacing: 0.18em;
+  cursor: pointer; border-radius: 1px; transition: border-color 0.3s, background 0.3s;
+}
+.btn-ghost:hover { border-color: #c9a84c; background-color: rgba(201,168,76,0.08); }
+
+/* ── MARQUEE ── */
+.marquee-strip {
+  background: linear-gradient(90deg, #8a6e2f, #c9a84c, #e8c96e, #c9a84c, #8a6e2f);
+  padding: 0.85rem 0; overflow: hidden; white-space: nowrap; position: relative; z-index: 10;
+}
+.marquee-inner { display: inline-flex; gap: 2.8rem; animation: marquee 22s linear infinite; }
+.marquee-item {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.62rem; letter-spacing: 0.24em;
+  color: #0a0a0a; display: flex; align-items: center; gap: 1.4rem;
+}
+.marquee-item::after { content: '✦'; }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ── SHARED ── */
+section { position: relative; z-index: 1; }
+.sp { padding: 9rem 6rem; }
+.sh { text-align: center; margin-bottom: 5rem; }
+.s-tag {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.62rem; letter-spacing: 0.3em; color: #c9a84c; margin-bottom: 1.2rem;
+  display: flex; align-items: center; justify-content: center; gap: 0.9rem;
+}
+.s-tag::before, .s-tag::after { content: ''; display: block; width: 28px; height: 1px; background-color: #8a6e2f; }
+.s-cursive {
+  font-family: 'Great Vibes', 'Brush Script MT', cursive;
+  font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+  padding: 0.08em 0.05em;
+  background: linear-gradient(135deg, #e8c96e, #f5d980, #c9a84c);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.25; display: block;
+}
+.s-title {
+  font-family: 'Cormorant Garamond', 'Palatino Linotype', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; line-height: 1.25; color: #fdfaf3;
+}
+.s-title em {
+  font-style: italic;
+  background: linear-gradient(135deg, #e8c96e, #f5d980);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.s-sub {
+  font-family: 'Raleway', Verdana, sans-serif;
+  font-size: 0.9rem; color: rgba(253,250,243,0.52); line-height: 1.85; max-width: 520px; margin: 1rem auto 0;
+}
+.gold-gem { display: flex; align-items: center; gap: 1rem; justify-content: center; }
+.gem-line { width: 70px; height: 1px; }
+.gem-line-l { background: linear-gradient(90deg, transparent, #8a6e2f); }
+.gem-line-r { background: linear-gradient(90deg, #8a6e2f, transparent); }
+.gem-diamond { width: 6px; height: 6px; background-color: #c9a84c; transform: rotate(45deg); }
+
+/* ── WELCOME ── */
+.welcome { background-color: #1c1a16 !important; }
+.welcome-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+.welcome-cursive {
+  font-family: 'Great Vibes', 'Brush Script MT', cursive;
+  font-size: clamp(3.2rem, 6vw, 5.5rem);
+  padding: 0.08em 0.05em;
+  background: linear-gradient(135deg, #e8c96e, #f5d980, #c9a84c);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 18px rgba(201,168,76,0.22));
+  line-height: 1.3; margin-bottom: 0.5rem; display: block;
+}
+.welcome-subtitle {
+  font-family: 'Cinzel', Georgia, serif; font-size: 0.65rem; letter-spacing: 0.3em;
+  color: #c9a84c; margin-bottom: 3rem;
+}
+.welcome-body {
+  font-family: 'Cormorant Garamond', 'Palatino Linotype', Georgia, serif;
+  font-size: clamp(1.1rem, 2vw, 1.32rem); font-weight: 300; line-height: 2;
+  color: rgba(253,250,243,0.78);
+}
+.welcome-body p { margin-bottom: 1.2rem; }
+.welcome-body .accent {
+  font-style: italic;
+  background: linear-gradient(135deg, #e8c96e, #c9a84c);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.welcome-body .highlight { color: #e8c96e; font-weight: 400; }
+
+/* ── WHY SECTION ── */
+.why-section { background-color: #0f0e0c !important; }
+.why-faith-inner { max-width: 900px; margin: 0 auto; }
+.why-faith-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 4rem;
+}
+.why-faith-statement {
+  font-family: 'Cormorant Garamond', 'Palatino Linotype', Georgia, serif;
+  font-size: clamp(1rem, 1.8vw, 1.18rem); font-weight: 300; line-height: 2.1;
+  color: rgba(253,250,243,0.78);
+}
+.why-faith-statement p { margin-bottom: 1rem; }
+.why-faith-statement .em-gold { font-style: italic; color: #e8c96e; }
+.why-faith-closing {
+  margin-top: 2rem;
+  font-family: 'Great Vibes', 'Brush Script MT', cursive;
+  font-size: 2.4rem; line-height: 1.3; padding: 0.08em 0;
+  background: linear-gradient(135deg, #e8c96e, #f5d980);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+}
+.why-faith-right {
+  border: 1px solid rgba(201,168,76,0.22); padding: 2.8rem;
+  background-color: rgba(201,168,76,0.03); position: relative;
+}
+.why-faith-right::before {
+  content: '✦'; position: absolute; top: -0.7rem; left: 50%; transform: translateX(-50%);
+  background-color: #0f0e0c; padding: 0 0.5rem; color: #c9a84c; font-size: 0.7rem;
+}
+.why-pillars { list-style: none; }
+.why-pillars li {
+  padding: 1.1rem 0; border-bottom: 1px solid rgba(201,168,76,0.1);
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.why-pillars li:last-child { border-bottom: none; }
+.pillar-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+.pillar-title {
+  font-family: 'Cinzel', Georgia, serif; font-size: 0.68rem; letter-spacing: 0.15em;
+  color: #c9a84c; margin-bottom: 0.3rem;
+}
+.pillar-desc { font-size: 0.83rem; color: rgba(253,250,243,0.52); line-height: 1.65; }
+
+/* ── SERVICES ── */
+.services { background-color: #151310 !important; }
+.svc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background-color: rgba(201,168,76,0.1); }
+.svc-card {
+  background-color: #151310 !important; padding: 3.2rem 2.6rem;
+  position: relative; overflow: hidden; transition: background 0.4s;
+}
+.svc-card:hover { background-color: #1a180f !important; }
+.svc-card:hover .svc-icon { border-color: #c9a84c; background-color: rgba(201,168,76,0.14); }
+.svc-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.6rem; }
+.svc-icon {
+  width: 50px; height: 50px; border: 1px solid rgba(201,168,76,0.32); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+  background-color: rgba(201,168,76,0.05); transition: border-color 0.3s, background 0.3s;
+}
+.svc-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(201,168,76,0.28), transparent); }
+.svc-name {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.5rem; font-weight: 300;
+  color: #fdfaf3; margin-bottom: 0.7rem; line-height: 1.2;
+}
+.svc-name em {
+  font-style: italic;
+  background: linear-gradient(135deg, #e8c96e, #c9a84c);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.svc-desc { font-size: 0.84rem; color: rgba(253,250,243,0.52); line-height: 1.8; margin-bottom: 1.5rem; }
+.svc-list { list-style: none; margin-bottom: 1.8rem; }
+.svc-list li {
+  font-size: 0.79rem; color: rgba(253,250,243,0.52); padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(201,168,76,0.07);
+  display: flex; gap: 0.65rem; align-items: center;
+}
+.svc-list li::before { content: '✦'; font-size: 0.38rem; color: #c9a84c; flex-shrink: 0; }
+.svc-link {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-family: 'Cinzel', Georgia, serif; font-size: 0.62rem; letter-spacing: 0.2em;
+  color: #c9a84c; text-decoration: none; transition: gap 0.25s, color 0.25s;
+}
+.svc-link:hover { gap: 1rem; color: #f5d980; }
+.svc-cta-cell {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; gap: 1.5rem;
+}
+.svc-cta-quote {
+  font-family: 'Great Vibes', 'Brush Script MT', cursive; font-size: 2rem;
+  background: linear-gradient(135deg, #e8c96e, #f5d980, #c9a84c);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1.5; padding: 0.05em 0;
+}
+
+/* ── HOW IT WORKS ── */
+.how { background-color: #1c1a16 !important; }
+.how-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; position: relative; margin-top: 5rem; }
+.how-line {
+  position: absolute; top: 21px; left: calc(12.5% + 22px); right: calc(12.5% + 22px);
+  height: 1px; background: linear-gradient(90deg, #8a6e2f, rgba(201,168,76,0.25), #8a6e2f);
+}
+.how-step { text-align: center; padding: 0 1.6rem; position: relative; }
+.step-gem {
+  width: 42px; height: 42px;
+  background: linear-gradient(135deg, #e8c96e, #c9a84c);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.7rem; font-size: 1rem; position: relative; z-index: 1;
+  box-shadow: 0 0 0 6px #1c1a16, 0 0 20px rgba(201,168,76,0.3);
+}
+.step-t {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.15rem;
+  color: #fdfaf3; margin-bottom: 0.65rem;
+}
+.step-d { font-size: 0.81rem; color: rgba(253,250,243,0.52); line-height: 1.7; }
+
+/* ── TESTIMONIALS ── */
+.testimonials { background-color: #0f0e0c !important; }
+.test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 4rem; }
+.test-card {
+  border: 1px solid rgba(201,168,76,0.16); padding: 2.8rem;
+  background-color: rgba(201,168,76,0.025); position: relative; overflow: hidden;
+  border-radius: 2px; transition: border-color 0.3s, transform 0.3s;
+}
+.test-card:hover { border-color: rgba(201,168,76,0.42); transform: translateY(-4px); }
+.test-crosses { color: #c9a84c; font-size: 0.9rem; letter-spacing: 0.3rem; margin-bottom: 1.1rem; }
+.test-q {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;
+  font-size: 1rem; line-height: 1.8; color: rgba(253,250,243,0.78); margin-bottom: 1.7rem;
+}
+.test-a { font-family: 'Cinzel', Georgia, serif; font-size: 0.6rem; letter-spacing: 0.18em; color: #c9a84c; }
+
+/* ── WHY CHOOSE US ── */
+.why { background-color: #151310 !important; }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.why-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; margin-bottom: 3rem; }
+.why-stat {
+  border: 1px solid rgba(201,168,76,0.18); padding: 1.8rem 1.6rem;
+  background-color: rgba(201,168,76,0.03); text-align: center;
+}
+.ws-num {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2.4rem; font-weight: 600;
+  background: linear-gradient(135deg, #e8c96e, #f5d980);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1;
+}
+.ws-label { font-size: 0.65rem; letter-spacing: 0.14em; color: rgba(253,250,243,0.52); margin-top: 0.35rem; text-transform: uppercase; }
+.why-feats { list-style: none; }
+.why-feats li {
+  display: flex; gap: 0.9rem; align-items: flex-start; padding: 0.9rem 0;
+  border-bottom: 1px solid rgba(201,168,76,0.07);
+  font-size: 0.86rem; color: rgba(253,250,243,0.78); line-height: 1.6;
+}
+.why-feats li::before { content: '✦'; color: #c9a84c; font-size: 0.5rem; margin-top: 0.35rem; flex-shrink: 0; }
+.why-right .s-tag { justify-content: flex-start; }
+.why-right .s-tag::before { display: none; }
+.why-right .s-title { text-align: left; }
+.why-p { font-size: 0.88rem; color: rgba(253,250,243,0.52); line-height: 1.9; margin-top: 1.4rem; }
+.why-loc {
+  margin-top: 2.4rem; border: 1px solid rgba(201,168,76,0.22); padding: 1.3rem 1.8rem;
+  display: flex; gap: 0.9rem; align-items: center; background-color: rgba(201,168,76,0.03);
+}
+.why-loc-icon { font-size: 1.3rem; color: #c9a84c; }
+.why-loc-h { font-family: 'Cinzel', Georgia, serif; font-size: 0.67rem; letter-spacing: 0.18em; color: #c9a84c; margin-bottom: 0.2rem; }
+.why-loc-t { font-size: 0.79rem; color: rgba(253,250,243,0.52); }
+
+/* ── CTA ── */
+.cta-section {
+  padding: 9rem 6rem; text-align: center; position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #0f0e0c 0%, #1a1608 50%, #0f0e0c 100%) !important;
+}
+.cta-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,0.1) 0%, transparent 70%);
+}
+.cta-ghost {
+  font-family: 'Great Vibes', 'Brush Script MT', cursive;
+  font-size: clamp(5rem, 12vw, 10rem); padding: 0.05em 0;
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  color: rgba(201,168,76,0.04); white-space: nowrap; pointer-events: none; user-select: none;
+}
+.cta-inner { position: relative; z-index: 2; }
+.cta-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.2rem,5vw,4rem); font-weight: 300; line-height: 1.2;
+  color: #fdfaf3; margin: 1rem 0 1.4rem;
+}
+.cta-title em {
+  font-style: italic;
+  background: linear-gradient(135deg, #e8c96e, #f5d980);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.cta-sub { font-size: 0.93rem; color: rgba(253,250,243,0.78); max-width: 470px; margin: 0 auto 2.8rem; line-height: 1.8; }
+.cta-form { display: flex; max-width: 470px; margin: 0 auto; }
+.cta-input {
+  flex: 1; background-color: rgba(201,168,76,0.06);
+  border: 1px solid rgba(201,168,76,0.3); border-right: none;
+  color: #fdfaf3; padding: 1rem 1.3rem;
+  font-size: 0.87rem; outline: none;
+}
+.cta-input::placeholder { color: rgba(253,250,243,0.4); }
+.cta-submit {
+  background: linear-gradient(135deg, #e8c96e, #c9a84c);
+  border: none; padding: 1rem 1.8rem;
+  font-family: 'Cinzel', Georgia, serif; font-size: 0.64rem; letter-spacing: 0.14em;
+  color: #0a0a0a; cursor: pointer; transition: opacity 0.3s;
+}
+.cta-submit:hover { opacity: 0.85; }
+.cta-note { font-size: 0.7rem; color: rgba(253,250,243,0.52); margin-top: 0.9rem; }
+.cta-phone { font-size: 0.82rem; color: rgba(253,250,243,0.52); margin-top: 1.8rem; }
+.cta-phone a { color: #c9a84c; text-decoration: none; border-bottom: 1px solid rgba(201,168,76,0.3); }
+
+/* ── FOOTER ── */
+footer { background-color: #070605 !important; padding: 5rem 6rem 2.5rem; border-top: 1px solid rgba(201,168,76,0.18); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; padding-bottom: 4rem; border-bottom: 1px solid rgba(201,168,76,0.09); }
+.f-logo {
+  font-family: 'Great Vibes', 'Brush Script MT', cursive; font-size: 2rem; line-height: 1.2;
+  padding: 0.05em 0;
+  background: linear-gradient(135deg, #e8c96e, #c9a84c);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; margin-bottom: 0.5rem; display: block;
+}
+.f-tagline {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;
+  font-size: 0.83rem; color: rgba(253,250,243,0.35); margin-bottom: 1.1rem;
+}
+.f-desc { font-size: 0.8rem; color: rgba(253,250,243,0.52); line-height: 1.8; max-width: 250px; }
+.f-col h4 { font-family: 'Cinzel', Georgia, serif; font-size: 0.6rem; letter-spacing: 0.24em; color: #c9a84c; margin-bottom: 1.3rem; }
+.f-col ul { list-style: none; }
+.f-col li { margin-bottom: 0.65rem; }
+.f-col a { font-size: 0.8rem; color: rgba(253,250,243,0.52); text-decoration: none; transition: color 0.2s; }
+.f-col a:hover { color: #e8c96e; }
+.footer-bottom {
+  padding-top: 2rem; display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.7rem; color: rgba(253,250,243,0.28);
+}
+.footer-bottom a { color: #8a6e2f; text-decoration: none; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 960px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links, .nav-cta { display: none; }
+  .sp { padding: 6rem 1.5rem; }
+  .svc-grid, .test-grid, .footer-grid { grid-template-columns: 1fr; }
+  .how-grid { grid-template-columns: 1fr 1fr; }
+  .how-line { display: none; }
+  .why-grid, .why-faith-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .cta-form { flex-direction: column; }
+  .cta-input { border-right: 1px solid rgba(201,168,76,0.3); border-bottom: none; }
+  footer { padding: 4rem 1.5rem 2rem; }
+  .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+  .cta-section { padding: 6rem 1.5rem; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<nav>
+  <div class="nav-brand">
+    <div class="nav-lotus"></div>
+    <span class="nav-logo">Graceful Glow</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#welcome">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">Process</a></li>
+    <li><a href="#testimonials">Results</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book Now</button>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-ring hero-ring-a"></div>
+  <div class="hero-ring hero-ring-b"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="eline eline-l"></span>
+      Feel Better · Look Better · Live Brighter
+      <span class="eline eline-r"></span>
+    </div>
+    <span class="hero-cursive">Graceful Glow</span>
+    <div class="hero-divider">
+      <div class="hdl hdl-l"></div>
+      <div class="hdt">Health &amp; Wellness</div>
+      <div class="hdl hdl-r"></div>
+    </div>
+    <p class="hero-sub">
+      Personalized Care. Real Results. You Deserve to Glow.<br/>
+      Faith-based wellness &amp; weight loss — serving Southwest Florida.
+    </p>
+    <div class="hero-icons">
+      <div class="hic"><div class="hic-circle">⚗️</div><div class="hic-label">Peptides</div></div>
+      <div class="hic"><div class="hic-circle">💧</div><div class="hic-label">IV Hydration</div></div>
+      <div class="hic"><div class="hic-circle">⚖️</div><div class="hic-label">Weight Loss</div></div>
+      <div class="hic"><div class="hic-circle">🧬</div><div class="hic-label">Hormones</div></div>
+      <div class="hic"><div class="hic-circle">➕</div><div class="hic-label">Urgent Care</div></div>
+    </div>
+    <div class="hero-btns">
+      <button class="btn-gold" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book a Consultation</button>
+      <button class="btn-ghost" onclick="document.getElementById('welcome').scrollIntoView({behavior:'smooth'})">Our Story</button>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="marquee-item">GLP-1 Therapy</span>
+    <span class="marquee-item">Peptide Treatments</span>
+    <span class="marquee-item">IV Hydration</span>
+    <span class="marquee-item">Hormone Therapy</span>
+    <span class="marquee-item">Weight Loss Solutions</span>
+    <span class="marquee-item">Mobile &amp; Telehealth</span>
+    <span class="marquee-item">Southwest Florida</span>
+    <span class="marquee-item">GLP-1 Therapy</span>
+    <span class="marquee-item">Peptide Treatments</span>
+    <span class="marquee-item">IV Hydration</span>
+    <span class="marquee-item">Hormone Therapy</span>
+    <span class="marquee-item">Weight Loss Solutions</span>
+    <span class="marquee-item">Mobile &amp; Telehealth</span>
+    <span class="marquee-item">Southwest Florida</span>
+  </div>
+</div>
+
+<section class="welcome sp" id="welcome">
+  <div class="welcome-inner">
+    <span class="welcome-cursive">Welcome to Graceful Glow</span>
+    <div class="welcome-subtitle">Health &amp; Wellness · Southwest Florida</div>
+    <div class="gold-gem" style="margin-bottom:3rem;">
+      <div class="gem-line gem-line-l"></div><div class="gem-diamond"></div><div class="gem-line gem-line-r"></div>
+    </div>
+    <div class="welcome-body">
+      <p>A <span class="accent">faith-based wellness and weight loss clinic</span> designed for men and women ready for real, lasting change.</p>
+      <p>Here, we focus on more than the scale.<br/>We focus on your <span class="highlight">whole health — body, mind, and spirit.</span></p>
+      <p>If you've struggled with weight, energy, or feeling like yourself again...<br/><span class="accent">you're not alone.</span></p>
+      <p>This is your space to <span class="highlight">reset, rebuild, and glow again</span><br/>— with guidance, compassion, and purpose.</p>
+    </div>
+  </div>
+</section>
+
+<section class="why-section sp" id="why">
+  <div class="sh">
+    <div class="s-tag">Our Foundation</div>
+    <span class="s-cursive">Why Graceful Glow</span>
+  </div>
+  <div class="why-faith-inner">
+    <div class="why-faith-grid">
+      <div>
+        <div class="why-faith-statement">
+          <p>Because <span class="em-gold">quick fixes don't last.</span></p>
+          <p>Because your health deserves more than trends.</p>
+          <p>Because <span class="em-gold">true transformation starts from within.</span></p>
+          <p>As a Nurse Practitioner, I created this space to combine medical care with faith and compassion — so you can finally achieve results that last.</p>
+          <p>This is not just weight loss.</p>
+        </div>
+        <span class="why-faith-closing">This is your transformation.</span>
+      </div>
+      <div class="why-faith-right">
+        <ul class="why-pillars">
+          <li><div class="pillar-icon">🙏</div><div><div class="pillar-title">Faith-Based Care</div><p class="pillar-desc">Rooted in compassion and purpose — we treat the whole person, not just symptoms.</p></div></li>
+          <li><div class="pillar-icon">🩺</div><div><div class="pillar-title">Medical Expertise</div><p class="pillar-desc">Led by a Nurse Practitioner with clinical-grade treatments personalized to you.</p></div></li>
+          <li><div class="pillar-icon">✨</div><div><div class="pillar-title">Lasting Results</div><p class="pillar-desc">No quick fixes. No trends. Real, sustainable transformation from the inside out.</p></div></li>
+          <li><div class="pillar-icon">💛</div><div><div class="pillar-title">Body, Mind &amp; Spirit</div><p class="pillar-desc">Your wellness journey goes beyond the scale — we're here for every part of you.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services sp" id="services">
+  <div class="sh">
+    <div class="s-tag">Our Treatments</div>
+    <span class="s-cursive">What We Offer</span>
+    <p class="s-sub">Every treatment is medically supervised and tailored to your unique wellness journey.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card">
+      <div class="svc-row"><div class="svc-icon">⚖️</div><div class="svc-line"></div></div>
+      <div class="svc-name">GLP-1 <em>Therapy</em></div>
+      <p class="svc-desc">Clinically proven weight management using GLP-1 receptor agonists for sustainable, lasting transformation.</p>
+      <ul class="svc-list"><li>Semaglutide &amp; Tirzepatide programs</li><li>Medical-grade, personalized dosing</li><li>Ongoing physician supervision</li><li>Progress tracking &amp; support</li></ul>
+      <a class="svc-link" href="#contact">Learn More →</a>
+    </div>
+    <div class="svc-card">
+      <div class="svc-row"><div class="svc-icon">⚗️</div><div class="svc-line"></div></div>
+      <div class="svc-name">Peptide <em>Therapy</em></div>
+      <p class="svc-desc">Harness bioactive peptides to optimize hormone function, accelerate recovery, and restore youthful vitality.</p>
+      <ul class="svc-list"><li>Anti-aging &amp; regenerative peptides</li><li>Recovery &amp; performance protocols</li><li>Hormonal balance support</li><li>Customized treatment plans</li></ul>
+      <a class="svc-link" href="#contact">Learn More →</a>
+    </div>
+    <div class="svc-card">
+      <div class="svc-row"><div class="svc-icon">💧</div><div class="svc-line"></div></div>
+      <div class="svc-name">IV <em>Hydration</em></div>
+      <p class="svc-desc">Replenish essential vitamins directly into your bloodstream for instant energy, radiance, and recovery.</p>
+      <ul class="svc-list"><li>Myers' Cocktail &amp; custom blends</li><li>Vitamin C &amp; antioxidant infusions</li><li>Fatigue &amp; recovery boosters</li><li>Immunity &amp; beauty infusions</li></ul>
+      <a class="svc-link" href="#contact">Learn More →</a>
+    </div>
+    <div class="svc-card">
+      <div class="svc-row"><div class="svc-icon">🧬</div><div class="svc-line"></div></div>
+      <div class="svc-name">Hormone <em>Therapy</em></div>
+      <p class="svc-desc">Restore hormonal balance for men and women with personalized therapy to help you thrive at every age.</p>
+      <ul class="svc-list"><li>Optimization for men &amp; women</li><li>Thyroid &amp; adrenal support</li><li>Comprehensive lab testing</li><li>Ongoing monitoring &amp; adjustments</li></ul>
+      <a class="svc-link" href="#contact">Learn More →</a>
+    </div>
+    <div class="svc-card">
+      <div class="svc-row"><div class="svc-icon">➕</div><div class="svc-line"></div></div>
+      <div class="svc-name">Urgent <em>Care</em></div>
+      <p class="svc-desc">Compassionate, convenient medical care when you need it — without the long waits of a traditional clinic.</p>
+      <ul class="svc-list"><li>Same-day appointments available</li><li>Illness &amp; injury treatment</li><li>Mobile &amp; telehealth options</li><li>Serving Southwest Florida</li></ul>
+      <a class="svc-link" href="#contact">Learn More →</a>
+    </div>
+    <div class="svc-card svc-cta-cell">
+      <div class="svc-cta-quote">Your Wellness Journey<br/>Starts Here</div>
+      <div class="gold-gem"><div class="gem-line gem-line-l"></div><div class="gem-diamond"></div><div class="gem-line gem-line-r"></div></div>
+      <button class="btn-gold" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book a Free Consult</button>
+    </div>
+  </div>
+</section>
+
+<section class="how sp" id="how">
+  <div class="sh">
+    <div class="s-tag">The Process</div>
+    <span class="s-cursive">Your Journey</span>
+    <p class="s-sub">We make your wellness journey seamless — from your first call to lasting results.</p>
+  </div>
+  <div class="how-grid">
+    <div class="how-line"></div>
+    <div class="how-step"><div class="step-gem">🤝</div><div class="step-t">Free Consultation</div><p class="step-d">Discuss your goals, health history, and which treatments are right for you.</p></div>
+    <div class="how-step"><div class="step-gem">📋</div><div class="step-t">Custom Plan</div><p class="step-d">Our medical team crafts a personalized protocol built around your unique body and lifestyle.</p></div>
+    <div class="how-step"><div class="step-gem">💉</div><div class="step-t">Begin Treatment</div><p class="step-d">Start with full support — in-clinic, mobile, or via telehealth, wherever you are.</p></div>
+    <div class="how-step"><div class="step-gem">✨</div><div class="step-t">Glow &amp; Thrive</div><p class="step-d">Experience lasting results with ongoing monitoring and encouragement every step of the way.</p></div>
+  </div>
+</section>
+
+<section class="testimonials sp" id="testimonials">
+  <div class="sh">
+    <div class="s-tag">Client Stories</div>
+    <span class="s-cursive">Real Results</span>
+    <p class="s-sub">Our clients' transformations speak for themselves.</p>
+  </div>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-crosses">✞ ✞ ✞ ✞ ✞</div>
+      <p class="test-q">I've tried everything over the years. The GLP-1 program at Graceful Glow finally gave me the structure and medical support I needed. Down 34 lbs and feeling absolutely incredible.</p>
+      <div class="test-a">— Jessica M. · GLP-1 Client</div>
+    </div>
+    <div class="test-card">
+      <div class="test-crosses">✞ ✞ ✞ ✞ ✞</div>
+      <p class="test-q">The IV hydration sessions are now part of my weekly routine. I feel energized, my skin glows, and I'm keeping up with my busy schedule like never before.</p>
+      <div class="test-a">— Tanya R. · IV Hydration Client</div>
+    </div>
+    <div class="test-card">
+      <div class="test-crosses">✞ ✞ ✞ ✞ ✞</div>
+      <p class="test-q">Peptide therapy changed everything for my recovery. I'm sleeping better, training harder, and the Graceful Glow team genuinely cares about your progress.</p>
+      <div class="test-a">— Marcus D. · Peptide Client</div>
+    </div>
+  </div>
+</section>
+
+<section class="why sp">
+  <div class="why-grid">
+    <div>
+      <div class="why-stats">
+        <div class="why-stat"><div class="ws-num">✞</div><div class="ws-label">Faith-Based Care</div></div>
+        <div class="why-stat"><div class="ws-num">100%</div><div class="ws-label">Medical Grade</div></div>
+        <div class="why-stat"><div class="ws-num">SW</div><div class="ws-label">Florida Based</div></div>
+        <div class="why-stat"><div class="ws-num">✦</div><div class="ws-label">Telehealth Available</div></div>
+      </div>
+      <ul class="why-feats">
+        <li>Board-certified medical professionals overseeing every treatment plan</li>
+        <li>Pharmacy-grade medications from accredited compounding pharmacies</li>
+        <li>Mobile services &amp; telehealth throughout Southwest Florida</li>
+        <li>Holistic, whole-body approach — we treat the root cause, not just symptoms</li>
+        <li>Ongoing support, check-ins, and plan adjustments included</li>
+      </ul>
+    </div>
+    <div class="why-right">
+      <div class="s-tag" style="justify-content:flex-start;">Why Choose Us</div>
+      <h2 class="s-title">Where Luxury Meets <em>Medical Excellence</em></h2>
+      <p class="why-p">At Graceful Glow, we believe wellness is not a luxury — it is a right. We combine the highest standards of medical care with a personalized, concierge-level experience.</p>
+      <p class="why-p">Whether your goal is to shed weight, restore hormonal balance, recover faster, or simply feel your most radiant self — we are here to guide you every step of the way.</p>
+      <div class="why-loc">
+        <div class="why-loc-icon">📍</div>
+        <div><div class="why-loc-h">Serving Southwest Florida</div><div class="why-loc-t">Mobile &amp; Telehealth Options Available</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contact">
+  <div class="cta-ghost">Graceful Glow</div>
+  <div class="cta-inner">
+    <div class="s-tag" style="justify-content:center;">Start Today</div>
+    <h2 class="cta-title">Ready to Begin Your<br/><em>Glow Journey?</em></h2>
+    <p class="cta-sub">Book a free consultation and discover the personalized plan that will help you look, feel, and live your absolute best.</p>
+    <div class="gold-gem" style="margin-bottom:2rem;">
+      <div class="gem-line gem-line-l"></div><div class="gem-diamond"></div><div class="gem-line gem-line-r"></div>
+    </div>
+    <div class="cta-form">
+      <input class="cta-input" type="email" placeholder="Enter your email address"/>
+      <button class="cta-submit">Book Now</button>
+    </div>
+    <p class="cta-note">No spam, ever. We respect your privacy.</p>
+    <p class="cta-phone">Email us: <a href="mailto:gracefulglowwellness@outlook.com">gracefulglowwellness@outlook.com</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <span class="f-logo">Graceful Glow</span>
+      <div class="f-tagline">Health &amp; Wellness · "Your Wellness Journey Starts Here"</div>
+      <p class="f-desc">Faith-based, medically supervised health and wellness — serving Southwest Florida with mobile and telehealth options.</p>
+    </div>
+    <div class="f-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">GLP-1 Therapy</a></li>
+        <li><a href="#services">Peptide Therapy</a></li>
+        <li><a href="#services">IV Hydration</a></li>
+        <li><a href="#services">Hormone Therapy</a></li>
+        <li><a href="#services">Urgent Care</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>About</h4>
+      <ul>
+        <li><a href="#welcome">Our Story</a></li>
+        <li><a href="#why">Why Graceful Glow</a></li>
+        <li><a href="#how">Our Process</a></li>
+        <li><a href="#testimonials">Results</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="mailto:gracefulglowwellness@outlook.com">gracefulglowwellness@outlook.com</a></li>
+        <li><a href="https://www.instagram.com/xgracefulglowx?igsh=eWN6YjlnOG56ajBh&utm_source=qr" target="_blank">Instagram</a></li>
+        <li><a href="https://www.facebook.com/profile.php?id=61572364633988" target="_blank">Facebook</a></li>
+        <li><a href="#contact">Book a Consultation</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Graceful Glow Health &amp; Wellness. All rights reserved.</span>
+    <span><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Service</a> &nbsp;·&nbsp; <a href="#">Medical Disclaimer</a></span>
+  </div>
+</footer>
+
+<script>
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+  const particles = [];
+  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  for (let i = 0; i < 65; i++) {
+    particles.push({ x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight, r: Math.random()*1.4+0.3, dx: (Math.random()-0.5)*0.28, dy: -(Math.random()*0.38+0.08), alpha: Math.random()*0.55+0.1 });
+  }
+  function draw() {
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p => {
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(201,168,76,${p.alpha})`; ctx.fill();
+      p.x+=p.dx; p.y+=p.dy;
+      if(p.y<-5){p.y=H+5;p.x=Math.random()*W;}
+      if(p.x<-5)p.x=W+5; if(p.x>W+5)p.x=-5;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});
+  }, {threshold:0.1});
+  document.querySelectorAll('.svc-card,.test-card,.how-step,.why-stat,.why-feats li,.why-pillars li,.welcome-body p').forEach(el => {
+    el.style.opacity='0'; el.style.transform='translateY(22px)'; el.style.transition='opacity 0.65s ease,transform 0.65s ease'; obs.observe(el);
+  });
+</script>
+
+</body>
+</html>
